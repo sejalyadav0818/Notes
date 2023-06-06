@@ -1,0 +1,142 @@
+ npm install -g @nestjs/cli
+ nest new crud-nest
+ change  directory 
+ npm run start
+ env DATABASE_URL= "mysql://root:root@localhost:3306/crud-nest"
+
+ npm i prisma
+ npx prisma
+ 
+ npx prisma init
+ npx prisma migrate dev --name init
+ 
+ npm install @prisma/client
+ no require testing file--no-spec
+ craete module: nest g module user --no-spec
+ create service : nest g service user
+ create controller : nest g controller user
+ Bul@12345
+ npx prisma generate : to update schema
+ now in service make constructor :
+ 
+ Testing Api usimg swagger :npm i @nestjs/swagger
+ To generate clas s: nest g class user/user.dto
+ class validator and class tranformaer : npm i class-validator class-transformer
+ add validator like this 
+ import { ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsString } from 'class-validator';
+export class UserDto {
+  @ApiProperty({ description: 'please enter your name' })
+  @IsString()
+  name?: string;
+  @ApiProperty({ description: 'please enter your email' })
+  @IsEmail()
+  email?: string;
+}
+
+same as create post module 
+
+and them  add this into main.ts
+ model User {
+  id                     Int          @id @default(autoincrement())
+  name                   String
+  email                  String
+  password_hash          String
+  reset_token            String?
+  reset_token_expiry     DateTime?
+
+  roles                  Role[]       @relation("UserRole")
+  carts                  Cart[]
+  orders                 Order[]
+}
+
+model Role {
+  id                     Int          @id @default(autoincrement())
+  name                   String
+
+  users                  User[]       @relation("UserRole")
+  permissions            Permission[] @relation("RolePermission")
+}
+
+model Permission {
+  id                     Int          @id @default(autoincrement())
+  name                   String
+
+  roles                  Role[]       @relation("RolePermission")
+}
+
+model UserRole {
+  user_id                Int
+  role_id                Int
+
+  user                   User         @relation(fields: [user_id], references: [id])
+  role                   Role         @relation(fields: [role_id], references: [id])
+
+  @@id([user_id, role_id])
+}
+
+model Product {
+  id                     Int          @id @default(autoincrement())
+  name                   String
+  description            String?
+  price                  Float
+
+  categories             Category[]   @relation("ProductCategory")
+  carts                  Cart[]
+  order_items            OrderItem[]
+}
+
+model Category {
+  id                     Int          @id @default(autoincrement())
+  name                   String
+
+  products               Product[]    @relation("ProductCategory")
+}
+
+model ProductCategory {
+  product_id             Int
+  category_id            Int
+
+  product                Product      @relation(fields: [product_id], references: [id])
+  category               Category     @relation(fields: [category_id], references: [id])
+
+  @@id([product_id, category_id])
+}
+
+model Cart {
+  id                     Int          @id @default(autoincrement())
+  user_id                Int
+  product_id             Int
+  quantity               Int
+
+  user                   User         @relation(fields: [user_id], references: [id])
+  product                Product      @relation(fields: [product_id], references: [id])
+
+  @@unique([user_id, product_id])
+}
+
+model Order {
+  id                     Int          @id @default(autoincrement())
+  user_id                Int
+  order_date             DateTime
+  total_amount           Float
+
+  user                   User         @relation(fields: [user_id], references: [id])
+  order_items            OrderItem[]
+}
+
+model OrderItem {
+  order_id               Int
+  product_id             Int
+  quantity               Int
+  price                  Float
+
+  order                  Order        @relation(fields: [order_id], references: [id])
+  product                Product      @relation(fields: [product_id], references: [id])
+
+  @@id([order_id, product_id])
+}
+
+ 
+ 
+ 
