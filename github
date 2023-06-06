@@ -1,0 +1,39 @@
+Github
+Yes I too had this question :/ I was going to push my project to Github in HTTP type(not in SSH type). I had to enter my username and password in each push. So first I entered code relevant to below type
+
+git remote add origin git@github.com:YOUR-GIT/YOUR-REPO.git
+and I got
+
+git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.
+
+So however I solved my problems by doing below methods
+
+git remote rm origin   remove your git remote repository
+git remote  now check whether your remote remote repository have been removed
+URL = https://github.com/<username>/<repository>.git
+
+git remote add origin URL  Again add your URL to make remote repository
+git push -u origin master
+You can push your content to remote repository. In here as you use "-u" with the command you make a tracking branch and with the help of tracking branch in the remote repository you won't to tell git what branch you push in the next steps :)
+And here if you use linux git will ask username and password before push the content. And give your relevant credentials.
+For prevent to give username and password in each push you have to change git config
+
+For list your git config - git config --global --list
+you will see
+
+user.name=<your_username>
+user.email=<your_email>
+So you have to add credential.helper attribute to your git config to this
+
+5.git config --global --add credential.helper store add this to your terminal Now you can add new item to your files then git add., git commit -m "<message>", git push
+And now too there git will request your username and password and that will be the last time. And for next git pushes git won't request username and password from you :)
+
+
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:sejalyadav0818/all-sequelize-tasks.git
+git push -u origin main
