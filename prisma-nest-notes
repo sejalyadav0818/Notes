@@ -3,7 +3,7 @@
  change  directory 
  npm run start
  env DATABASE_URL= "mysql://root:root@localhost:3306/crud-nest"
-
+crud generator : nest g resource
  npm i prisma
  npx prisma
  
