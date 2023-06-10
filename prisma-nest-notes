@@ -9,7 +9,8 @@ crud generator : nest g resource
  
  npx prisma init
  npx prisma migrate dev --name init
- 
+  run seed : npx prisma db seed
+
  npm install @prisma/client
  no require testing file--no-spec
  craete module: nest g module user --no-spec
