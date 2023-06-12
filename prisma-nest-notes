@@ -1,4 +1,5 @@
 glpat-SFfqH2fnyyPHCKiFGNpX
+p2:glpat-iFnsyQYTffYhUGEVs4f5
 npm install -g @nestjs/cli
  nest new crud-nest
  change  directory 
