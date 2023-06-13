@@ -1,1 +1,4 @@
 
+Npx vs Npm : tool to set up project 
+Npm : node package  Manager : need to install on  local system :
+Npx : node package Runner : not need to install global dependency :  npx create-recat-app ./  : npm start
