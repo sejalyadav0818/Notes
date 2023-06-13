@@ -2,6 +2,7 @@ glpat-SFfqH2fnyyPHCKiFGNpX
 repo : 3glpat-BZcrdyxYzhsrvQdSm56H
 p2:glpat-iFnsyQYTffYhUGEVs4f5
 npm install -g @nestjs/cli
+glpat-7tR6KFhVRi8BEy9TZskC
  nest new crud-nest
  change  directory 
  npm run start
