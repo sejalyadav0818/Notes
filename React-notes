@@ -2,3 +2,37 @@
 Npx vs Npm : tool to set up project 
 Npm : node package  Manager : need to install on  local system :
 Npx : node package Runner : not need to install global dependency :  npx create-recat-app ./  : npm start
+
+DOM : Docunmenst Object Model:  https://developer.mozilla.org/en-US/docs/Web/API/Document
+componennt : ex header , footer etc
+
+functional component : create component an dthen call i from app component after craeting export anmd them import at APp.js : rendering UI only, 
+ex:
+welcome.jsx
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+export default Welcome;
+
+
+App.js
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+export default Welcome;
+
+class component : need to extand Reeact.Component and then render it. data management 
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+Different from functional components, class components must have an additional render( ) method for returning JSX.
+
+
+DIffrance : 
+We used to use class components because of "state". In the older versions of React (version < 16.8), it was not possible to use state inside functional components.
+
+Therefore, we needed functional components for rendering UI only, whereas we'd use class components for data management and some additional operations (like life-cycle methods). 
