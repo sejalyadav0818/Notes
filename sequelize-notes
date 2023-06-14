@@ -17,8 +17,12 @@ npx sequelize-cli model:generate --name user --attributes username:string,google
 npx sequelize-cli model:generate --name from  --attributes form_name:string,form_filds:string
 npx sequelize-cli model:generate --name from  --attributes form_name:string,form_filds:string
 id , userid , content posts table  post model  db sequelize_tutorial
+//////////////////////
+adding new column : sequelize migration:create --name name_of_your_migration
+add https://sequelize.org/docs/v6/other-topics/query-interface/
+and then run npx sequelize-cli db:migrate 
 
-
+////////////
 for migration npx sequelize-cli db:migrate  
 after migration db 2 table will craete 
 1.user : tanle 
