@@ -89,3 +89,33 @@ cannot cnages value of props & componenst always capital
 
 State : 
 
+
+
+1.hello with
+
+----functional component 
+/App.js
+import React from 'react';
+import './App.css';
+import Hello from './components/hello';
+
+
+function App() {
+  return (
+    <div className="App">
+        <Hello/>
+    </div>
+  );
+}
+
+export default App;
+
+/hello.js
+import React from "react";
+
+const Hello = () =>  <h1>Hello</h1>
+
+export default Hello;
+
+
+---class component 
