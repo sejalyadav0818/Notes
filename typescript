@@ -1,0 +1,2 @@
+npx create-react-app . --template typescript
+or yarn create-react-app  . --template typescript
