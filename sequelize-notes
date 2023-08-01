@@ -1,181 +1,110 @@
-Refrance : https://github.com/sequelize/cli
-https://sequelize.org/api/v6/class/src/dialects/abstract/query-interface.js~queryinterface
+# Sequelize CLI Operations
 
-npm install --save-dev sequelize-cli 
-npm install --save sequelize
-npx sequelize-cli init 
+1. **Installation**
 
-create models : npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,
-email:string
+    ```bash
+    npm install --save-dev sequelize-cli 
+    npm install --save sequelize
+    npx sequelize-cli init 
+    ```
 
-npx sequelize-cli model:generate --name Customer  --attributes email:string,password:string,fname:string,lname:string
+2. **Model Generation**
 
-npx sequelize-cli model:generate --name Task  --attributes user_id:integer,Title:string,details:string,status:string
+    Generate models using the command `npx sequelize-cli model:generate` with the appropriate attributes:
 
-npx sequelize-cli model:generate --name user --attributes username:string,googleid:string
+    ```bash
+    npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string
+    npx sequelize-cli model:generate --name Task --attributes user_id:integer,Title:string,details:string,status:string
+    ```
 
-npx sequelize-cli model:generate --name from  --attributes form_name:string,form_filds:string
-npx sequelize-cli model:generate --name from  --attributes form_name:string,form_filds:string
-id , userid , content posts table  post model  db sequelize_tutorial
-//////////////////////
-adding new column : sequelize migration:create --name name_of_your_migration
-add https://sequelize.org/docs/v6/other-topics/query-interface/
-and then run npx sequelize-cli db:migrate 
+3. **Migration**
 
-////////////
-for migration npx sequelize-cli db:migrate  
-after migration db 2 table will craete 
-1.user : tanle 
-2.SequelizeMeta : name of migration 
+    - Run migration:
 
-for undo last updated one  : npx sequelize-cli db:migrate:undo
-for undo all  : npx sequelize-cli db:migrate:undo:all
-to remove particuler : npx sequelize-cli db:migrate:undo --name 20230418111008-create-user-1.js
-for status : npx sequelize-cli db:migrate:status
-status (delete - down  , insert - up )
+        ```bash
+        npx sequelize-cli db:migrate
+        ```
 
-make Seeds : to craete file 
-for add data : npx sequelize-cli seed:generate --name demo-user 
-npx sequelize-cli db:seed:all //insert in both table
-chnage in seeders file 
-'use strict';
+    - Undo last migration:
 
-/** @type {import('sequelize-cli').Migration} */
-module.exports = {
-  async up (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Users', [{
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'example@example.com',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }]);
-  },
+        ```bash
+        npx sequelize-cli db:migrate:undo
+        ```
 
-  async down (queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('Users', null, {});
-  }
-};
+    - Undo all migrations:
 
-add seeds for particuler: npx sequelize-cli db:seed: --seed 20230418120353-demo-user.js
+        ```bash
+        npx sequelize-cli db:migrate:undo:all
+        ```
 
+    - Remove a particular migration:
 
-undo last seeds : npx sequelize-cli db:seed:undo
-undo all  seeds : npx sequelize-cli db:seed:undo:all
-for particuler : npx sequelize-cli db:seed:undo --seed 20230418111008-create-user-1.js
+        ```bash
+        npx sequelize-cli db:migrate:undo --name 20230418111008-create-user-1.js
+        ```
 
+    - Get the status of migrations:
 
-create migration-skeleton  : npx sequelize-cli migration:generate --name migration-skeleton
-crarte table : 
-code
-  up: (queryInterface, Sequelize) => {  // add 
-    return queryInterface.createTable('Person', {
-      name: Sequelize.DataTypes.STRING,
-      isBetaMember: {
-        type: Sequelize.DataTypes.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
-      }
-    });
-  },
-  down: (queryInterface, Sequelize) => {// undo
-    return queryInterface.dropTable('Person');
-  }
-};
+        ```bash
+        npx sequelize-cli db:migrate:status
+        ```
 
-Output : 
-to save  npx sequelize-cli db:migrate
-Table craeated Person
+4. **Seeding**
 
-Columns:
-	name	varchar(255)
-	isBetaMember	tinyint(1)
+    Generate seed file and insert data:
 
-to add & remove coulmn : 
+    ```bash
+    npx sequelize-cli seed:generate --name demo-user 
+    npx sequelize-cli db:seed:all
+    ```
 
-create new migration first 
-create migration-skeleton  : npx sequelize-cli migration:generate --name migration-skeleton
-module.exports = {
-  up: (queryInterface, Sequelize) => {// add 
-    return queryInterface.sequelize.transaction(t => {
-      return Promise.all([
-        queryInterface.addColumn('Person', 'petName', {
-          type: Sequelize.DataTypes.STRING
-        }, { transaction: t }),
-        queryInterface.addColumn('Person', 'favoriteColor', {
-          type: Sequelize.DataTypes.STRING,
-        }, { transaction: t })
-      ]);
-    });
-  },
-  down: (queryInterface, Sequelize) => { //undo
-    return queryInterface.sequelize.transaction(t => {
-      return Promise.all([
-        queryInterface.removeColumn('Person', 'petName', { transaction: t }),
-        queryInterface.removeColumn('Person', 'favoriteColor', { transaction: t })
-      ]);
-    });
-  }
-};
+    Undo the last seed:
 
-to save  npx sequelize-cli db:migrate
-output : 
-coulum added 
+    ```bash
+    npx sequelize-cli db:seed:undo
+    ```
 
-or 
+    Undo all seeds:
 
-https://stackoverflow.com/questions/49890998/how-to-add-column-in-sequelize-existing-model
- last soluation 
+    ```bash
+    npx sequelize-cli db:seed:undo:all
+    ```
 
-/////////////
+5. **Adding & Removing Columns**
 
-add foreign key 
-1.craete new migration 
-npx sequelize-cli migration:generate --name migration-skeleton
+    - Generate a new migration:
 
-2.add into migration file
-module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Person', {
-      name: Sequelize.DataTypes.STRING,
-      isBetaMember: {
-        type: Sequelize.DataTypes.BOOLEAN,
-        defaultValue: false,
-        allowNull: false
-      },
-      userId: {
-        type: Sequelize.DataTypes.INTEGER,
-        references: {
-          model: {
-            tableName: 'Users',
-            schema: 'Student'
-          },
-          key: 'id'
-        },
-        allowNull: false
-      },
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Person');
-  }
-}
+        ```bash
+        npx sequelize-cli migration:generate --name migration-skeleton
+        ```
 
-3.to save npx sequelize-cli db:migrate
-4.
+    - Add/remove columns by adding/removing them in the migration file, then run migration:
 
-..............
+        ```bash
+        npx sequelize-cli db:migrate
+        ```
 
+6. **Adding Foreign Key**
 
-//sync/await  
+    - Generate a new migration:
 
-with migration 
-https://www.youtube.com/watch?v=Y_3rGApZaao&list=PLIGDNOJWiL1-OJp8ZWBO2838ENa0tsy6H&index=21
+        ```bash
+        npx sequelize-cli migration:generate --name migration-skeleton
+        ```
 
-Dummy data https://arjunphp.com/insert-data-sequelize-seeds-faker/
-crud : https://www.topcoder.com/thrive/articles/crud-operations-with-mysql-using-sequelize
-	https://www.section.io/engineering-education/understanding-nodejs-sequelize-orm-models/	
-        https://medium.com/@vinayak-singh/creating-crud-apis-with-node-js-and-sequelize-cli-8b90e8784422
-        
-        https://dev.to/julfikarhaidar/rest-apis-example-with-sequelize-orm-with-node-js-and-express-p40  postgras
-migration  : https://sequelize.org/docs/v6/other-topics/migrations/
+    - Add a foreign key to the migration file, then run migration:
+
+        ```bash
+        npx sequelize-cli db:migrate
+        ```
+
+## Additional resources
+
+1. Sequelize documentation - [Migration](https://sequelize.org/docs/v6/other-topics/migrations/), [Query Interface](https://sequelize.org/api/v6/class/src/dialects/abstract/query-interface.js~queryinterface)
+
+2. YouTube tutorials - [Sequelize with migration](https://www.youtube.com/watch?v=Y_3rGApZaao&list=PLIGDNOJWiL1-OJp8ZWBO2838ENa0tsy6H&index=21)
+
+3. Blog posts - [CRUD operations](https://medium.com/@vinayak-singh/creating-crud-apis-with-node-js-and-sequelize-cli-8b90e8784422), [Insert data with Sequelize seeds & Faker](https://arjunphp.com/insert-data-sequelize-seeds-faker/), [Understanding Sequelize models](https://www.section.io/engineering-education/understanding-nodejs-sequelize-orm-models/)
+
+4. StackOverflow thread - [How to add column in Sequelize existing model](https://stackoverflow.com/questions/49890998/how-to-add-column-in-sequelize-existing-model)
+
