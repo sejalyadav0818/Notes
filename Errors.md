@@ -1,6 +1,3 @@
-
-Sure, here's a structured README file for the information you provided:
-
 ```markdown
 # README 
 
