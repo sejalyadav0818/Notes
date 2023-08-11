@@ -105,6 +105,135 @@ function Example() {
 
 ---
 
+## Advanced React Interview Questions
+
+---
+
+### 8. What are keys in React and why are they important?
+
+**Answer:** 
+Keys are a special attribute you need to include when creating lists of elements in React. They help React identify which items have been added, removed, or changed. Keys should be given to the elements inside the array to give the elements a stable identity.
+
+**Example:**
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) =>
+  <li key={number.toString()}>{number}</li>
+);
+```
+
+---
+
+### 9. Explain the difference between controlled and uncontrolled components.
+
+**Answer:** 
+- **Controlled Component:** In a controlled component, the form data is handled by the React component (state). The value of the input element is controlled by React in this method.
+  
+- **Uncontrolled Component:** In an uncontrolled component, the form data is handled by the DOM itself. Refs are used to get values from the DOM.
+
+**Example:**
+```javascript
+// Controlled Component
+<input type="text" value={this.state.value} onChange={this.handleChange} />
+
+// Uncontrolled Component
+<input type="text" ref={this.inputRef} />
+```
+
+---
+
+### 10. What is React's context API?
+
+**Answer:** 
+The Context API is a feature in React that allows you to share values like preferences, themes, or authentication status across component trees without passing props down manually at every level.
+
+**Example:**
+```javascript
+const ThemeContext = React.createContext('light');
+
+class App extends React.Component {
+  render() {
+    return (
+      <ThemeContext.Provider value="dark">
+        <ThemedButton />
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+function ThemedButton(props) {
+  return (
+    <ThemeContext.Consumer>
+      {theme => <button theme={theme} {...props} />}
+    </ThemeContext.Consumer>
+  );
+}
+```
+
+---
+
+### 11. What are higher-order components (HOC)?
+
+**Answer:** 
+HOC is a function that takes a component and returns a new component. It's a pattern derived from React's compositional nature. HOCs are common in third-party React libraries, like Redux's `connect` and React Router's `withRouter`.
+
+**Example:**
+```javascript
+function withSubscription(WrappedComponent, selectData) {
+  return class extends React.Component {
+    // ... 
+    render() {
+      return <WrappedComponent data={selectData(this.props.dataSource, this.props)} {...this.props} />;
+    }
+  };
+}
+```
+
+---
+
+### 12. What are React Fragments?
+
+**Answer:** 
+Fragments let you group a list of children without adding extra nodes to the DOM. This is useful when a component returns multiple elements.
+
+**Example:**
+```javascript
+render() {
+  return (
+    <>
+      <ChildA />
+      <ChildB />
+      <ChildC />
+    </>
+  );
+}
+```
+
+---
+
+### 13. What is prop drilling and how can you avoid it?
+
+**Answer:** 
+Prop drilling refers to the process of passing data with props through multiple levels of components. While it's a natural part of React's component structure, it can become tedious with deeper component trees. To avoid it, you can use React's Context API, Redux, or other state management libraries.
+
+---
+
+### 14. Explain the purpose of `shouldComponentUpdate` lifecycle method.
+
+**Answer:** 
+`shouldComponentUpdate` is a lifecycle method that allows you to opt out of component updates. By default, React always re-renders on state or props change. If `shouldComponentUpdate` returns `false`, the update is aborted.
+
+**Example:**
+```javascript
+shouldComponentUpdate(nextProps, nextState) {
+  return this.props.value !== nextProps.value;
+}
+```
+
+---
+
+---
+
 ## React Hooks Interview Questions
 
 ---
@@ -285,4 +414,4 @@ function Counter() {
 
 ---
 
-I hope this README helps you prepare for the React basic, Hooks portion of your interview. Remember, practice is key! Writing out your own examples and explaining them out loud can be a good way to solidify your understanding.
+I hope this README helps you prepare for the React Hooks portion of your interview. Remember, practice is key! Writing out your own examples and explaining them out loud can be a good way to solidify your understanding.
