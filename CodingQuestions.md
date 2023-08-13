@@ -1,7 +1,8 @@
 
-#Reverser Number  :
+# Reverser Number  :
 
-import java.util.*;
+# Code :  
+```import java.util.*;
 
 class HelloWorld {
     public static void main(String[] args) {
@@ -18,7 +19,7 @@ class HelloWorld {
         }
     }
 }
-
-Output : 
-Enter numberr789
+```
+## Output : 
+Enter numberr : 789
 987
