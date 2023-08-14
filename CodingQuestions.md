@@ -296,8 +296,5 @@ Number is Odd
 
 ---
 
-A is greater
-```
 
----
 
