@@ -11,6 +11,7 @@
 - [Leap Year Checker](#leap-year-checker)
 - [Swap Two Numbers Without Using a Third Variable](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
 - [Factorial Calculator](#Factorial-Calculator)
+- [Factorial Calculator Using Recursions](#Factorial-Calculator-Using-Recursions)
 
 ---
 
@@ -504,4 +505,60 @@ Factorial: 120
 ```
 
 ---
+Certainly! Here's a README for your `factorial` program:
 
+---
+
+# Factorial Calculator Using Recursions
+
+The `factorial` program takes a number as input and calculates its factorial.
+
+## Code:
+
+```java
+import java.util.*;
+
+class factorial {
+    public static void main(String args[]) {
+        int n;
+        System.out.println("Enter number");
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        sc.close();
+        factorial(n);
+    }
+
+    public static void factorial(int n) {
+        int fact = 1;
+        for (int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+        System.out.println("Factorial: " + fact);
+    }
+}
+```
+
+## How It Works:
+
+1. **User Input:** The program prompts the user to input an integer number.
+2. **Calculation:** The factorial of the number is calculated using a for loop. The factorial of a non-negative integer \( n \) is the product of all positive integers less than or equal to \( n \). It is denoted by \( n! \).
+3. **Output:** The computed factorial is then displayed to the user.
+
+## Sample Execution:
+
+**Input**:
+
+```
+Enter number
+5
+```
+
+**Output**:
+
+```
+Factorial: 120
+```
+
+---
+
+To calculate the factorial, the program multiplies each integer from 1 to the entered number. For instance, the factorial of 5 (denoted as 5!) is `5 x 4 x 3 x 2 x 1 = 120`.
