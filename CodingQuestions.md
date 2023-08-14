@@ -116,3 +116,71 @@ Enter number
 Number is not prime
 ```
 
+
+---
+
+# Number Palindrome Checker
+
+**Purpose**: This program determines if a given number is a palindrome, i.e., it reads the same forward and backward.
+
+## Code:
+
+```java
+import java.util.*;
+
+class isNumberPalindrome {
+    public static void main(String[] args) {
+        int n, original, reverse = 0, r;
+        
+        System.out.println("Enter Number");
+        Scanner sc= new Scanner(System.in);
+        n = sc.nextInt();
+        original = n;
+        
+        while(n > 0) {
+            r = n % 10;
+            reverse = reverse * 10 + r;
+            n = n / 10;
+        }
+        
+        if (original == reverse) {
+            System.out.println("Number is Palindrome");
+        } else {
+            System.out.println("Number is not Palindrome");
+        }
+        
+        sc.close();
+    }
+}
+```
+
+## Short Explanation:
+
+1. **User Input**: The program prompts the user to enter a number.
+2. **Reversing**: The program then iteratively takes the last digit of the number and constructs its reverse.
+   - For example, if the user inputs `121`:
+     - 1st iteration: `reverse` becomes `1`
+     - 2nd iteration: `reverse` becomes `12`
+     - 3rd iteration: `reverse` becomes `121`
+3. **Comparison**: The original number and its reverse are compared.
+4. **Output**: The program then notifies the user if the number is a palindrome or not.
+
+## Sample Output:
+
+For an input of `121`, the program will output:
+
+```
+Enter Number
+121
+Number is Palindrome
+```
+
+For an input of `123`, the program will output:
+
+```
+Enter Number
+123
+Number is not Palindrome
+```
+
+---
