@@ -9,7 +9,8 @@
 - [Greatest Among Three Numbers](#greatest-among-three-numbers)
 - [Odd or Even Number Checker](#odd-or-even-number-checker)
 - [Leap Year Checker](#leap-year-checker)
-
+- [Leap Year Checker](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
+- 
 ---
 
 
@@ -379,5 +380,69 @@ year is not leap year
 ---
 
 
+---
+
+# Swap Two Numbers Without Using a Third Variable
+
+**Purpose**: This program demonstrates how to swap the values of two variables without using a third temporary variable.
+
+## Code:
+
+```java
+import java.util.*;
+
+class swapTwonoWithoutThreeVarable {
+    public static void main(String[] args) {
+        int a, b;
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter a");
+        a = sc.nextInt();
+        
+        System.out.println("Enter b");
+        b = sc.nextInt();
+        
+        // Swapping logic without third variable
+        a = a + b;
+        b = a - b;
+        a = a - b;
+        
+        System.out.println("a " + a);
+        System.out.println("b " + b);
+        sc.close();
+    }
+}
+```
+
+## How it Works:
+
+1. The program prompts the user to input two numbers.
+2. Using arithmetic operations, the program swaps the values:
+   - `a` is updated to the sum of `a` and `b`.
+   - `b` is updated to the difference between the new value of `a` and `b`, which gives the original value of `a`.
+   - `a` is again updated to the difference between the new value of `a` and the new value of `b`, which gives the original value of `b`.
+3. The swapped values are then printed.
+
+## Explanation:
+
+This method makes use of arithmetic operations to swap values. By adding the two values, and then subtracting them in a specific order, we can effectively swap the values without needing a temporary variable.
+
+## Sample Execution:
+
+**Input**: 
+```
+Enter a
+10
+Enter b
+20
+```
+
+**Output**: 
+```
+a 20
+b 10
+```
+
+---
 
 
