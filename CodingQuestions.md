@@ -2,7 +2,7 @@
 ---
 
 # Table of Contents:
-
+- [Prime Number form 1 to 100](#Prime-Number-form-1-to-100)]
 - [Number Reverser](#number-reverser)
 - [Prime Number Checker](#prime-number-checker)
 - [Number Palindrome Checker](#number-palindrome-checker)
