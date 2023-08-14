@@ -12,6 +12,7 @@
 - [Swap Two Numbers Without Using a Third Variable](#swap-two-numbers-without-using-a-third-variable)
 - [Factorial Calculator](#factorial-calculator)
 - [Factorial Calculator Using Recursions](#factorial-calculator-using-recursions)
+- [Fibonacci Series Generator](#fibonacci-series-generator)
 
 ---
 
@@ -619,6 +620,57 @@ This program will print all prime numbers from 2 to 200, with each number printe
 ...
 197
 199
+```
+
+---
+---
+
+# Fibonacci Series Generator
+
+**Purpose**: This program generates the first `n` numbers in the Fibonacci series. In this implementation, the first ten numbers of the Fibonacci series are printed.
+
+## Code:
+
+```java
+class Fibonacci {
+    public static void main(String[] args) {
+        int a = 0, b = 1, c;
+        System.out.println(a + " " + b);
+        
+        for(int i = 1; i <= 10; i++) {
+            c = a + b;
+            System.out.println(c);
+            a = b;
+            b = c;
+        }
+    }
+}
+```
+
+## Explanation:
+
+- **Initialization**: The first two numbers in the Fibonacci series, `a` (0) and `b` (1), are initialized.
+- **Loop**: A loop runs 10 times, and in each iteration:
+  1. A new number, `c`, is calculated as the sum of the last two numbers (`a+b`).
+  2. The number `c` is printed.
+  3. Values of `a` and `b` are updated for the next iteration.
+  
+## Output:
+
+The program will generate the following output:
+
+```
+0 1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
 ```
 
 ---
