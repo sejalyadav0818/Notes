@@ -2,16 +2,16 @@
 ---
 
 # Table of Contents:
-- [Prime Number form 1 to 100](#Prime-Number-form-1-to-100)]
+- [Prime Number form 1 to 100](#prime-number)
 - [Number Reverser](#number-reverser)
 - [Prime Number Checker](#prime-number-checker)
 - [Number Palindrome Checker](#number-palindrome-checker)
 - [Greatest Among Three Numbers](#greatest-among-three-numbers)
 - [Odd or Even Number Checker](#odd-or-even-number-checker)
 - [Leap Year Checker](#leap-year-checker)
-- [Swap Two Numbers Without Using a Third Variable](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
-- [Factorial Calculator](#Factorial-Calculator)
-- [Factorial Calculator Using Recursions](#Factorial-Calculator-Using-Recursions)
+- [Swap Two Numbers Without Using a Third Variable](#swap-two-numbers-without-using-a-third-variable)
+- [Factorial Calculator](#factorial-calculator)
+- [Factorial Calculator Using Recursions](#factorial-calculator-using-recursions)
 
 ---
 
@@ -562,3 +562,63 @@ Factorial: 120
 ---
 
 To calculate the factorial, the program multiplies each integer from 1 to the entered number. For instance, the factorial of 5 (denoted as 5!) is `5 x 4 x 3 x 2 x 1 = 120`.
+
+---
+
+# Prime Number 
+
+**Purpose**: This Java program prints all prime numbers from 2 up to 200.
+
+## Code:
+
+```java
+class HelloWorld {
+
+    public static void main(String[] args) {
+        
+        for(int num=2; num<=200; num++) {
+            if(isPrime(num)) {
+                System.out.println("" + num);
+            }
+        }
+
+    }
+    
+    public static boolean isPrime(int n) {
+        if(n <= 1) {
+            return false;
+        }
+        for(int i=2; i <= Math.sqrt(n); i++) {
+            if(n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+```
+
+## Explanation:
+
+1. **Main Method**: Iterates through numbers from 2 to 200 and calls the `isPrime` method for each number. If the `isPrime` method returns `true`, the number is printed.
+
+2. **isPrime Method**: This method determines whether a given number `n` is prime.
+   - If `n` is less than or equal to 1, it immediately returns `false`.
+   - It then checks if `n` has any divisors other than 1 and itself. This is done by trying to divide it by every number up to its square root. 
+   - Using the square root as the upper limit improves efficiency. If `n` has a factor greater than its square root, then it definitely has a smaller factor that we've already checked.
+   - If `n` is divisible by any number in the loop (remainder is zero), the method returns `false`. If the loop completes without finding any divisors, the method returns `true`.
+
+## Sample Output:
+
+This program will print all prime numbers from 2 to 200, with each number printed on a new line:
+
+```
+2
+3
+5
+...
+197
+199
+```
+
+---
