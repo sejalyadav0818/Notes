@@ -295,8 +295,6 @@ Number is Odd
 ```
 
 ---
-Certainly! Here's a README format presentation for the provided code:
-
 ---
 
 # Leap Year Checker
