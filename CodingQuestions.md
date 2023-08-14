@@ -1,6 +1,20 @@
 
 ---
 
+# Table of Contents:
+
+- [Number Reverser](#number-reverser)
+- [Prime Number Checker](#prime-number-checker)
+- [Number Palindrome Checker](#number-palindrome-checker)
+- [Greatest Among Three Numbers](#greatest-among-three-numbers)
+- [Odd or Even Number Checker](#odd-or-even-number-checker)
+- [Leap Year Checker](#leap-year-checker)
+
+---
+
+
+---
+
 # Number Reverser
 
 **Purpose**: This program reverses the digits of a given number.
