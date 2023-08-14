@@ -10,6 +10,7 @@
 - [Odd or Even Number Checker](#odd-or-even-number-checker)
 - [Leap Year Checker](#leap-year-checker)
 - [Swap Two Numbers Without Using a Third Variable](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
+- [Factorial Calculator](#Factorial-Calculator)
 
 ---
 
@@ -445,4 +446,62 @@ b 10
 
 ---
 
+
+
+---
+
+# Factorial Calculator
+
+**Purpose**: This Java program calculates the factorial of a given number.
+
+## Code:
+
+```java
+import java.util.*;
+
+class factorial {
+    public static void main(String args[]) {
+        int n;
+        int fact = 1;
+        
+        System.out.println("Enter number");
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        
+        for(int i = 1; i <= n; i++) {
+            fact = fact * i;
+        }
+        
+        System.out.println("Factorial: " + fact);
+        sc.close();
+    }
+}
+```
+
+## How it Works:
+
+1. The program prompts the user to input a number.
+2. The program calculates the factorial of the number using a `for` loop.
+3. The calculated factorial is then printed to the console.
+
+## Explanation:
+
+Factorial of a non-negative integer \( n \) is the product of all positive integers less than or equal to \( n \). It is denoted by \( n! \). For example:
+
+- \( 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120 \)
+
+## Sample Execution:
+
+**Input**: 
+```
+Enter number
+5
+```
+
+**Output**: 
+```
+Factorial: 120
+```
+
+---
 
