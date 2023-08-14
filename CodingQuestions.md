@@ -295,6 +295,77 @@ Number is Odd
 ```
 
 ---
+Certainly! Here's a README format presentation for the provided code:
+
+---
+
+# Leap Year Checker
+
+**Purpose**: This Java program determines whether the provided year is a leap year or not.
+
+## Code:
+
+```java
+import java.util.*;
+
+class numberIsLeapyer {
+    public static void main(String[] args) {
+        int year = 0;
+        System.out.println("Enter a year");
+        Scanner sc = new Scanner(System.in);
+        year = sc.nextInt();
+        sc.close();
+
+        if((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)) {
+            System.out.println("year is leap year");
+        } else {
+            System.out.println("year is not leap year");
+        }
+    }
+}
+```
+
+## How it Works:
+
+1. The program prompts the user to input a year.
+2. The year is then checked against the following conditions to determine if it's a leap year:
+   - It's divisible by 400, OR
+   - It's divisible by 4 but NOT divisible by 100.
+3. Based on these conditions:
+   - If true, the program prints "year is leap year".
+   - Otherwise, it prints "year is not leap year".
+
+## Leap Year Rule:
+
+Leap years are necessary to sync the calendar year with the solar year. A leap year has 366 days, with an additional day in February, making it 29 days long.
+
+A year is a leap year if:
+   - It's divisible by 4, except for end-of-century years, which must be divisible by 400. This means that the year 2000 was a leap year, although 1900 was not.
+
+## Sample Execution:
+
+**Input**: 
+```
+2000
+```
+
+**Output**: 
+```
+year is leap year
+```
+
+**Input**: 
+```
+1900
+```
+
+**Output**: 
+```
+year is not leap year
+```
+
+---
+
 
 
 
