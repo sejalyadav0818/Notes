@@ -184,3 +184,59 @@ Number is not Palindrome
 ```
 
 ---
+
+---
+
+# Greatest Among Three Numbers
+
+**Purpose**: This Java program determines the greatest among three numbers entered by the user.
+
+## Code:
+
+```java
+import java.util.*;
+
+public class graterOfThree {
+    public static void main(String[] args) {
+        int a, b, c;
+        System.out.println("Enter 3 numbers");  
+        Scanner sc = new Scanner(System.in);
+        a = sc.nextInt();
+        b = sc.nextInt();
+        c = sc.nextInt();
+        sc.close();
+
+        if(a > b && a > c) {
+            System.out.println("A is greater");
+        } else if(b > a && b > c) {
+            System.out.println("B is greater"); 
+        } else {
+            System.out.println("C is greater"); 
+        }
+    }
+}
+```
+
+## How it Works:
+
+1. The program prompts the user to enter three numbers.
+2. Using conditional statements, it checks:
+   - If `a` is greater than both `b` and `c`, it will print "A is greater".
+   - If the above condition is not met and `b` is greater than both `a` and `c`, it will print "B is greater".
+   - If neither of the above conditions is true, it will print "C is greater", assuming that `c` is the greatest of the three.
+
+## Sample Execution:
+
+**Input**: 
+```
+Enter 3 numbers
+5 3 4
+```
+
+**Output**: 
+```
+A is greater
+```
+
+---
+
