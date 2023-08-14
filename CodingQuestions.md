@@ -9,8 +9,8 @@
 - [Greatest Among Three Numbers](#greatest-among-three-numbers)
 - [Odd or Even Number Checker](#odd-or-even-number-checker)
 - [Leap Year Checker](#leap-year-checker)
-- [Leap Year Checker](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
-- 
+- [Swap Two Numbers Without Using a Third Variable](#Swap-Two-Numbers-Without-Using-a-Third-Variable)
+
 ---
 
 
