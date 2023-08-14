@@ -240,3 +240,64 @@ A is greater
 
 ---
 
+# Odd or Even Number Checker
+
+**Purpose**: This Java program determines whether the given number is odd or even.
+
+## Code:
+
+```java
+import java.util.*;
+
+class numberisOddorEven {
+    public static void main(String[] args) {
+        int number = 0;
+        Scanner sc = new Scanner(System.in);
+        number = sc.nextInt();
+        sc.close();
+
+        if(number % 2 == 0) {
+            System.out.println("Number is Even");
+        } else {
+            System.out.println("Number is Odd");
+        }
+    }
+}
+```
+
+## How it Works:
+
+1. The program waits for the user to input a number.
+2. It then checks the remainder when the number is divided by 2:
+   - If the remainder is 0, it means the number is even, and the program will print "Number is Even".
+   - Otherwise, it will print "Number is Odd".
+
+## Sample Execution:
+
+**Input**: 
+```
+6
+```
+
+**Output**: 
+```
+Number is Even
+```
+
+**Input**: 
+```
+7
+```
+
+**Output**: 
+```
+Number is Odd
+```
+
+---
+
+A is greater
+```
+
+---
+
