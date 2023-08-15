@@ -872,3 +872,118 @@ public static void pattern4() {
 *   *
 *****
 ```
+---
+
+### Pattern 5
+
+**Description:**  
+Prints a right-angled triangle using asterisks, where the number of asterisks increases for each line from 1 to 5.
+
+**Code:**
+```java
+public static void pattern5() {
+    for(int i=1; i<=5; i++) {
+        for(int j=1; j<=i; j++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+}
+```
+
+**Output:**
+```
+*
+**
+***
+****
+*****
+```
+
+---
+
+### Pattern 6
+
+**Description:**  
+Prints a pattern of asterisks in descending order from 5 to 1.
+
+**Code:**
+```java
+public static void pattern6() {
+    for(int y=5; y>=1; y--) {
+        for(int o=y; o>=1; o--) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+}
+```
+
+**Output:**
+```
+*****
+****
+***
+**
+*
+```
+
+---
+
+### Pattern 7
+
+**Description:**  
+Prints a right-angled triangle of asterisks. However, this time there are spaces before the asterisks, giving the triangle an inverted appearance.
+
+**Code:**
+```java
+public static void pattern7() {
+    int n=4;
+    for(int i=1; i<=n; i++) {
+        for(int k=1; k<=n-i; k++) {
+            System.out.print(" ");
+        }
+        for(int k=1; k<=i; k++) {
+            System.out.print("*");
+        }
+        System.out.println();
+    }
+}
+```
+
+**Output:**
+```
+   *
+  **
+ ***
+****
+```
+
+---
+
+### Pattern 8
+
+**Description:**  
+Prints numbers in a format that resembles a right-angled triangle. The numbers on each line start from 1 and go up to the line number.
+
+**Code:**
+```java
+public static void pattern8() {
+    for(int i=1; i<=4; i++) {
+        for(int j=1; j<=i; j++) {
+            System.out.print(j);
+        }
+        System.out.println();
+    }
+}
+```
+
+**Output:**
+```
+1
+12
+123
+1234
+```
+
+---
