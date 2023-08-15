@@ -783,3 +783,92 @@ Output:
 
 ---
 
+---
+
+## Patterns
+
+### Pattern 1
+
+**Description:**  
+Prints 4 asterisks in a row.
+
+**Java Code:**
+```java
+public static void pattern1() {
+    System.out.println("****");
+}
+```
+
+**Example Output:**
+```
+****
+```
+
+### Pattern 2
+
+**Description:**  
+Prints a single asterisk in 4 consecutive lines.
+
+**Java Code:**
+```java
+public static void pattern2() {
+    for (int i = 0; i < 4; i++) {
+        System.out.println("*");
+    }
+}
+```
+
+**Example Output:**
+```
+*
+*
+*
+*
+```
+
+### Pattern 3
+
+**Description:**  
+Repeats the pattern from Pattern 1 in 4 consecutive lines.
+
+**Java Code:**
+```java
+public static void pattern3() {
+    for (int i = 0; i < 4; i++) {
+        System.out.println("****");
+    }
+}
+```
+
+**Example Output:**
+```
+****
+****
+****
+****
+```
+
+### Pattern 4
+
+**Description:**  
+Prints a 5x5 square of asterisks where the internal asterisks are replaced by spaces except for the border.
+
+**Java Code:**
+```java
+public static void pattern4() {
+    System.out.println("*****");
+    for (int i = 0; i < 3; i++) {
+        System.out.println("*   *");
+    }
+    System.out.println("*****");
+}
+```
+
+**Example Output:**
+```
+*****
+*   *
+*   *
+*   *
+*****
+```
