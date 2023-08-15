@@ -674,3 +674,111 @@ The program will generate the following output:
 ```
 
 ---
+---
+
+# Java Patterns README
+
+## 1. Print 4 Asterisks Vertically
+
+This program simply prints an asterisk (`*`) four times, each on a new line.
+
+```java
+class HelloWorld {
+    public static void main(String[] args) {
+        for(int i=0; i<=4; i++) {
+            System.out.println("*");
+        }
+    }
+}
+```
+
+Output:
+```
+*
+*
+*
+*
+*
+```
+
+## 2. Print 4x4 Asterisks Square
+
+This program prints a 4x4 square of asterisks. It uses a nested loop to achieve this. The outer loop controls the rows, and the inner loop controls the columns.
+
+```java
+class HelloWorld {
+    public static void main(String[] args) {
+        for(int i=1; i<=4; i++) {
+            for(int j=1; j<=4; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+Output:
+```
+****
+****
+****
+****
+```
+
+## 3. Hollow Rectangle
+
+This program prints a rectangle with a border of asterisks. The middle part of the rectangle is hollow (it's filled with spaces). It uses conditionals inside the loops to decide when to print an asterisk or a space.
+
+```java
+class HelloWorld {
+    public static void main(String[] args) {
+        for(int i=1; i<=4; i++) {
+            for(int j=1; j<=4; j++) {
+                if(i == 1 || i == 4 || j == 1 || j == 4) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+Output:
+```
+****
+*  *
+*  *
+****
+```
+
+## 4. Number Pattern
+
+This program prints a pattern of numbers. The pattern consists of numbers that are decremented with each iteration of the inner loop, starting from 4.
+
+```java
+public class Main {
+    public static void main(String args[]) {
+        for(int i=1; i<=4; i++) {
+            for(int j=4; j>=i; j--) {
+                System.out.print(j);
+            }
+            System.out.println();   
+        }
+    }
+}
+```
+
+Output:
+```
+4321
+432
+43
+4
+```
+
+---
+
