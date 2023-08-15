@@ -746,6 +746,7 @@ class HelloWorld {
     }
 }
 ```
+![image](https://github.com/sejalyadav0818/Notes/assets/130818890/0e018ab2-62bc-4e8d-89db-a24677966e2b)
 
 Output:
 ```
