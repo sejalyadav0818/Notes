@@ -139,3 +139,71 @@ The ACID properties are a set of properties that ensure reliable processing of t
     - **Definition**: Durability ensures that once a transaction has been committed, it remains committed even in the case of a system failure. This is typically achieved by storing the transaction logs or by ensuring data is flushed to permanent storage.
     - **Example**: After confirming the receipt of a payment in an online store, the transaction data is stored in permanent storage. If there's a system crash shortly after the payment confirmation, the data related to that transaction won't be lost, thanks to durability. When the system restarts, the transaction will still be in a committed state.
 
+# Normalization
+
+Normalization is a process in relational database design that organizes tables to minimize data redundancy and dependency by dividing larger tables into smaller ones and defining relationships between them. The main goals of normalization are:
+
+1. Eliminating redundant data.
+2. Ensuring data is stored logically.
+3. Reducing the potential for anomalies during data operations (insertion, update, deletion).
+
+**Real-time Example of Normalization**:
+
+Imagine a university database with a table called `Students`:
+
+| StudentID | FullName | Subjects                           | ContactNumber |
+|-----------|----------|------------------------------------|---------------|
+| 1         | John Doe | Math, Science, History             | 1234567890    |
+| 2         | Jane Doe | Science, History                   | 0987654321    |
+| 3         | Sam Smith| Math, History, Physical Education  | 1122334455    |
+
+Issues with the table:
+
+1. The Subjects column has multiple values, making it challenging to query specific subjects or modify one subject for a student.
+2. If we need to change the name of a subject, we have to do it in multiple places.
+3. Deleting a student row might inadvertently delete information about which subjects are offered.
+
+To normalize, we'd break this table down:
+
+1. **Student Table**:
+
+| StudentID | FullName   | ContactNumber |
+|-----------|------------|---------------|
+| 1         | John Doe   | 1234567890    |
+| 2         | Jane Doe   | 0987654321    |
+| 3         | Sam Smith  | 1122334455    |
+
+2. **Subjects Table**:
+
+| SubjectID | SubjectName |
+|-----------|-------------|
+| 1         | Math        |
+| 2         | Science     |
+| 3         | History     |
+| 4         | Physical Education |
+
+3. **StudentSubjects Table**:
+
+| StudentID | SubjectID |
+|-----------|-----------|
+| 1         | 1         |
+| 1         | 2         |
+| 1         | 3         |
+| 2         | 2         |
+| 2         | 3         |
+| 3         | 1         |
+| 3         | 3         |
+| 3         | 4         |
+
+This normalized design eliminates redundancy and reduces the potential for anomalies.
+
+**Types of Normal Forms**:
+
+1. **First Normal Form (1NF)**: Each table has a primary key, and each column contains atomic, indivisible values.
+2. **Second Normal Form (2NF)**: All non-key attributes are fully functionally dependent on the primary key. This basically means no partial dependencies of columns on the primary key.
+3. **Third Normal Form (3NF)**: All the attributes in a table are functionally dependent only on the primary key.
+4. **Boyce-Codd Normal Form (BCNF)**: A more stringent version of the 3NF. For any non-trivial functional dependency X -> Y, X should be a super key.
+5. **Fourth Normal Form (4NF)**: Concerned with multi-valued facts. There shouldn't be any dependencies amongst unrelated facts.
+6. **Fifth Normal Form (5NF)**: Concerned with join dependencies.
+7. **Sixth Normal Form (6NF)**: Concerned with temporal databases and how data is valid over certain periods of time.
+
