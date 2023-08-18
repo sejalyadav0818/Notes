@@ -119,8 +119,8 @@ Now, let's delve into the different types of SQL commands:
 
 The above examples provide an overview of the various SQL command types and how they operate on data and database structures.
 
+# ACID Properties
 
-#ACID Properties
 The ACID properties are a set of properties that ensure reliable processing of transactions in a database management system (DBMS). The acronym "ACID" stands for Atomicity, Consistency, Isolation, and Durability.
 
 1. **Atomicity**:
