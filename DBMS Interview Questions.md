@@ -511,6 +511,41 @@ This normalized design eliminates redundancy and reduces the potential for anoma
   This fetches every employee alongside their respective managers from an `employees` table, where managers are also employees in the same table.
 
 
+# Understanding Redundancy:
+
+1. **Definition**: Redundancy in DBMS is when data is repeated in the database unnecessarily, leading to a waste of storage and potential inconsistencies.
+
+2. **Problems caused by Redundancy**:
+   - **Update Anomaly**: Difficulty in updating data. For instance, if the same data is stored in multiple locations, updating it in one place but not the others can lead to inconsistencies.
+   - **Insert Anomaly**: There might be scenarios where certain data cannot be inserted without the presence of other data.
+   - **Delete Anomaly**: Removing a record might unintentionally remove valuable data if the data is stored redundantly.
+
+### Example of Redundancy:
+
+Consider a simple database for a school system. Let's take a table `Classes`:
+
+| StudentName | Subject       | TeacherName |
+|-------------|---------------|-------------|
+| Alice       | Mathematics   | Mr. Smith   |
+| Bob         | Mathematics   | Mr. Smith   |
+| Charlie     | English       | Mrs. Doe    |
+| Alice       | English       | Mrs. Doe    |
+
+From the table, you can observe redundancy:
+
+1. The teacher's name for each subject is repeated for every student taking that subject. If there's a change in the teacher for a subject, you'd have to update multiple rows.
+  
+2. If you wanted to delete a student's record, you would also be deleting the teacher associated with them, which isn't ideal.
+
+3. If you wanted to add a new subject, you'd need a student to associate with it right away, which might not always be the case.
+
+### Solutions:
+
+1. **Normalization**: This is the process of organizing data to minimize redundancy. In the above example, normalization might involve creating separate tables for `Students`, `Subjects`, and `Teachers`, and then using foreign keys to establish relationships.
+
+2. **Regular Audits**: Periodically checking the database for redundancy can help in keeping it clean and efficient.
+
+
 
 
 
