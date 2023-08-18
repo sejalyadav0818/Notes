@@ -118,3 +118,24 @@ Now, let's delve into the different types of SQL commands:
         ```
 
 The above examples provide an overview of the various SQL command types and how they operate on data and database structures.
+
+
+#ACID Properties
+The ACID properties are a set of properties that ensure reliable processing of transactions in a database management system (DBMS). The acronym "ACID" stands for Atomicity, Consistency, Isolation, and Durability.
+
+1. **Atomicity**:
+    - **Definition**: Atomicity ensures that a transaction is treated as a single unit, which means either all of its operations are executed or none of them are.
+    - **Example**: Let's say you're making an online transfer from one bank account to another. The operation consists of deducting the amount from one account and adding it to another. If, for some reason, the amount is deducted from one account but not added to the receiving account (e.g., due to a system crash or failure), the whole transaction will be rolled back, ensuring that the amount is not lost.
+
+2. **Consistency**:
+    - **Definition**: Consistency ensures that the database remains in a consistent state before and after the transaction. This means that any transaction will bring the database from one valid state to another.
+    - **Example**: Suppose there's a rule that the minimum balance in a bank account must be $100. If a transaction attempts to reduce the balance below $100, the transaction will be aborted to ensure the consistency rule is not violated.
+
+3. **Isolation**:
+    - **Definition**: Isolation ensures that concurrent execution of transactions results in a system state that would be obtained if transactions were executed serially (one after the other). This means that the operations of one transaction are isolated from the operations of other transactions.
+    - **Example**: Imagine two people trying to book the last seat on a flight at the same time. Even if their booking operations happen concurrently, the isolation property will ensure that only one person successfully books the seat while the other receives an error or a notification that the seat has already been booked.
+
+4. **Durability**:
+    - **Definition**: Durability ensures that once a transaction has been committed, it remains committed even in the case of a system failure. This is typically achieved by storing the transaction logs or by ensuring data is flushed to permanent storage.
+    - **Example**: After confirming the receipt of a payment in an online store, the transaction data is stored in permanent storage. If there's a system crash shortly after the payment confirmation, the data related to that transaction won't be lost, thanks to durability. When the system restarts, the transaction will still be in a committed state.
+
