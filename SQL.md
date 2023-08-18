@@ -71,6 +71,45 @@ Now, let's delve into the different types of SQL commands:
         ```sql
         SAVEPOINT Savepoint1;
         ```
+        example :
+1. **COMMIT**:
+    - What it does: It permanently saves any transactional updates into the database. After committing, you cannot undo the changes.
+    
+    - Example:
+        ```sql
+        BEGIN TRANSACTION; -- or just BEGIN;
+        UPDATE Employees SET Salary = Salary + 5000 WHERE Role = 'Engineer';
+        COMMIT;
+        ```
+
+2. **ROLLBACK**:
+    - What it does: It undoes any changes made during the current transaction and reverts to the previous state before the transaction began.
+    
+    - Example:
+        ```sql
+        BEGIN TRANSACTION;
+        DELETE FROM Employees WHERE Role = 'Intern';
+        -- Oops, I changed my mind!
+        ROLLBACK;
+        ```
+
+3. **SAVEPOINT**:
+    - What it does: It creates a point within a transaction to which you can later roll back, instead of rolling back the entire transaction. This allows you to have nested levels of transactions.
+    
+    - Example:
+        ```sql
+        BEGIN TRANSACTION;
+        UPDATE Employees SET Salary = 55000 WHERE Name = 'Jane';
+
+        SAVEPOINT SavepointA;
+
+        INSERT INTO Employees (Name, Role, Salary) VALUES ('Mike', 'Intern', 30000);
+
+        -- Oh no, I shouldn't have added Mike as an Intern.
+        ROLLBACK TO SavepointA; -- This will only undo the INSERT operation, not the UPDATE operation.
+
+        COMMIT; -- This will save the changes from the UPDATE operation but not the INSERT.
+        ```
 
 5. **DQL (Data Query Language)**:
     - Primarily consists of the `SELECT` command to query and retrieve data. It's often considered a part of DML, but some sources separate it.
