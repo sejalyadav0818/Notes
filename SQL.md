@@ -207,3 +207,94 @@ This normalized design eliminates redundancy and reduces the potential for anoma
 6. **Fifth Normal Form (5NF)**: Concerned with join dependencies.
 7. **Sixth Normal Form (6NF)**: Concerned with temporal databases and how data is valid over certain periods of time.
 
+
+# Keys
+### 1. **Primary Key**:
+
+- **Definition**: A column or set of columns that uniquely identifies a record within a table.
+  
+- **Use**: Ensures that each row in the table is unique.
+
+- **Example**:
+  ```
+  CREATE TABLE Students (
+      StudentID INT PRIMARY KEY,
+      FirstName VARCHAR(255),
+      LastName VARCHAR(255)
+  );
+  ```
+  Here, `StudentID` is a primary key, meaning each student must have a unique ID.
+
+### 2. **Foreign Key**:
+
+- **Definition**: A column or set of columns in one table that refers to the primary key in another table.
+  
+- **Use**: Ensures referential integrity in the relationship between two tables.
+
+- **Example**:
+  ```
+  CREATE TABLE Enrollments (
+      EnrollmentID INT PRIMARY KEY,
+      StudentID INT FOREIGN KEY REFERENCES Students(StudentID),
+      CourseName VARCHAR(255)
+  );
+  ```
+  Here, `StudentID` in the `Enrollments` table is a foreign key that references `StudentID` in the `Students` table.
+
+### 3. **Unique Key**:
+
+- **Definition**: A column or set of columns where all values must be unique, similar to the primary key, but a table can have multiple unique keys.
+  
+- **Use**: Ensures uniqueness of values in columns where it's applied.
+
+- **Example**:
+  ```
+  CREATE TABLE Users (
+      UserID INT PRIMARY KEY,
+      Email VARCHAR(255) UNIQUE,
+      Password VARCHAR(255)
+  );
+  ```
+  Here, the `Email` column is a unique key, ensuring no two users have the same email address.
+
+### 4. **Composite Key**:
+
+- **Definition**: A type of key that consists of two or more columns to ensure uniqueness within the database.
+  
+- **Use**: When no single column is sufficient to uniquely identify records.
+
+- **Example**:
+  ```
+  CREATE TABLE Enrollments (
+      StudentID INT,
+      CourseID INT,
+      EnrollmentDate DATE,
+      PRIMARY KEY (StudentID, CourseID)
+  );
+  ```
+  Here, the combination of `StudentID` and `CourseID` acts as a composite key.
+
+### 5. **Candidate Key**:
+
+- **Definition**: A column or set of columns that can be chosen as a primary key. There can be multiple candidate keys, but only one can be the primary key.
+  
+- **Use**: To identify potential primary keys.
+
+- **Example**: In a table with columns `Email`, `MobileNumber`, and `UserID`, all three columns can be candidate keys if they can uniquely identify a record.
+
+### 6. **Secondary (or Alternate) Key**:
+
+- **Definition**: Any candidate key which is not chosen as the primary key.
+  
+- **Use**: Useful for retrieval and access purposes.
+
+- **Example**: If in a table `UserID` is the primary key, then `Email` and `MobileNumber` (both unique) would be secondary or alternate keys.
+
+### 7. **Super Key**:
+
+- **Definition**: A set of one or more columns that can be used to identify records uniquely. A super key may contain additional columns that are not strictly required for unique identification.
+  
+- **Use**: To understand potential combinations for unique identification.
+
+- **Example**: In a table with columns `UserID` and `Email`, `{UserID}`, `{Email}`, and `{UserID, Email}` are all super keys, but only the first two are candidate keys.
+
