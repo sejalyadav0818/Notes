@@ -298,3 +298,58 @@ This normalized design eliminates redundancy and reduces the potential for anoma
 
 - **Example**: In a table with columns `UserID` and `Email`, `{UserID}`, `{Email}`, and `{UserID, Email}` are all super keys, but only the first two are candidate keys.
 
+# `DROP` vs  `DELETE` vs `TRUNCATE
+
+### 1. `DELETE`:
+
+- **Definition**: `DELETE` is used to remove rows from a table based on a condition. If no condition is specified, all rows will be deleted.
+  
+- **Characteristics**:
+  - It's a logged operation, meaning every row deletion is recorded in the logs. This can make the operation slower, especially for large data.
+  - It doesn't free the space associated with the table but makes it available for future inserts.
+  - You can use a `WHERE` clause to specify criteria for deletion.
+  - It triggers DELETE triggers in the database.
+
+- **Example**:
+  ```sql
+  DELETE FROM students WHERE student_id = 5;
+  ```
+
+### 2. `TRUNCATE`:
+
+- **Definition**: `TRUNCATE` quickly removes all rows from a table, resetting the space occupied by the table to its minimum.
+  
+- **Characteristics**:
+  - Typically, it's a minimally logged operation, making it faster than DELETE.
+  - It frees the space back to the system, effectively resetting the table to be like a new one.
+  - You cannot use a `WHERE` clause. It will remove all rows.
+  - Doesn't generally activate triggers as it doesn't operate on individual rows.
+
+- **Example**:
+  ```sql
+  TRUNCATE TABLE students;
+  ```
+
+### 3. `DROP`:
+
+- **Definition**: The `DROP` command removes an entire table or database from the database system.
+  
+- **Characteristics**:
+  - All space associated with the object (table, database, etc.) is released back to the system.
+  - The structure/schema of the object is also deleted, meaning you lose both the data and the design.
+  - It's not a logged operation in terms of individual rows (since the whole structure is removed).
+  - There's no going back after a DROP without a backup.
+
+- **Example**:
+  ```sql
+  DROP TABLE students;
+  ```
+
+### Main Differences:
+
+- **Scope**: `DELETE` operates on rows, `TRUNCATE` operates on the entire table (but retains the structure), and `DROP` removes the entire table or database structure and data.
+- **Speed**: `TRUNCATE` is usually faster than `DELETE` because it's less logged. `DROP` is fast because it removes the entire object.
+- **Space**: After `TRUNCATE` and `DROP`, space is freed to the system, while `DELETE` just makes it available for future rows in the same table.
+- **Flexibility**: Only `DELETE` allows for conditional removal based on the data in the rows.
+
+
