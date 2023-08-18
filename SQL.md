@@ -298,7 +298,7 @@ This normalized design eliminates redundancy and reduces the potential for anoma
 
 - **Example**: In a table with columns `UserID` and `Email`, `{UserID}`, `{Email}`, and `{UserID, Email}` are all super keys, but only the first two are candidate keys.
 
-# `DROP` vs  `DELETE` vs `TRUNCATE
+# `DROP` vs  `DELETE` vs `TRUNCATE`
 
 ### 1. `DELETE`:
 
@@ -351,5 +351,81 @@ This normalized design eliminates redundancy and reduces the potential for anoma
 - **Speed**: `TRUNCATE` is usually faster than `DELETE` because it's less logged. `DROP` is fast because it removes the entire object.
 - **Space**: After `TRUNCATE` and `DROP`, space is freed to the system, while `DELETE` just makes it available for future rows in the same table.
 - **Flexibility**: Only `DELETE` allows for conditional removal based on the data in the rows.
+
+# Join 
+
+### 1. **INNER JOIN (or JOIN)**:
+
+- **Definition**: Returns records that have matching values in both tables.
+  
+- **Example**:
+  ```sql
+  SELECT employees.name, orders.order_id
+  FROM employees
+  INNER JOIN orders ON employees.employee_id = orders.employee_id;
+  ```
+  This returns all employees and their orders, but only for employees who have made at least one order.
+
+### 2. **LEFT JOIN (or LEFT OUTER JOIN)**:
+
+- **Definition**: Returns all records from the left table, and the matched records from the right table. If there's no match, the result is NULL on the right side.
+  
+- **Example**:
+  ```sql
+  SELECT students.name, courses.course_name
+  FROM students
+  LEFT JOIN enrollments ON students.student_id = enrollments.student_id
+  LEFT JOIN courses ON enrollments.course_id = courses.course_id;
+  ```
+  This fetches all students and the courses they are enrolled in, but it will also include students not enrolled in any course (with NULL for course names).
+
+### 3. **RIGHT JOIN (or RIGHT OUTER JOIN)**:
+
+- **Definition**: Returns all records from the right table, and the matched records from the left table. If there's no match, the result is NULL on the left side.
+  
+- **Example**:
+  ```sql
+  SELECT students.name, books.book_title
+  FROM students
+  RIGHT JOIN book_ownership ON students.student_id = book_ownership.student_id
+  RIGHT JOIN books ON book_ownership.book_id = books.book_id;
+  ```
+  This fetches all books and their respective owners. If a book has no owner, it'll still be listed (with NULL for the student's name).
+
+### 4. **FULL JOIN (or FULL OUTER JOIN)**:
+
+- **Definition**: Returns all records when there's a match in one of the left or right tables. Combines the effects of both LEFT and RIGHT joins.
+  
+- **Example**:
+  ```sql
+  SELECT customers.name, orders.order_id
+  FROM customers
+  FULL JOIN orders ON customers.customer_id = orders.customer_id;
+  ```
+  This fetches all customers and their orders, but it also includes customers with no orders and orders that have no linked customer.
+
+### 5. **CROSS JOIN**:
+
+- **Definition**: Returns the Cartesian product of the two tables. It pairs every row from the first table with every row from the second table.
+  
+- **Example**:
+  ```sql
+  SELECT colors.color_name, sizes.size_label
+  FROM colors
+  CROSS JOIN sizes;
+  ```
+  If you have a `colors` table with colors (Red, Blue) and a `sizes` table with sizes (Small, Medium), this would return all combinations: Red-Small, Red-Medium, Blue-Small, Blue-Medium.
+
+### 6. **SELF JOIN**:
+
+- **Definition**: A join of a table with itself. Useful when the data related to each other is in the same table.
+  
+- **Example**:
+  ```sql
+  SELECT A.employee_name, B.employee_name as 'Manager'
+  FROM employees A, employees B
+  WHERE A.manager_id = B.employee_id;
+  ```
+  This fetches every employee alongside their respective managers from an `employees` table, where managers are also employees in the same table.
 
 
