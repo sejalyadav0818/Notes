@@ -184,3 +184,92 @@ import { UserModule } from './user/user.module';
 })
 export class AppModule {}
 ```
+
+# Test CRUD API's with Swagger 
+
+1. **Ensure Swagger Module is Installed:**
+   Make sure you have the `@nestjs/swagger` package installed. If not, you can install it using:
+
+   ```bash
+   npm install --save @nestjs/swagger swagger-ui-express
+   ```
+
+2. **Set up Swagger Configuration:**
+   In your Nest.js application, you need to configure the Swagger module. Create a file, let's call it `swagger.config.ts`, and define your Swagger configuration:
+
+   ```typescript
+   import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
+   export const setupSwagger = (app) => {
+     const config = new DocumentBuilder()
+       .setTitle('Your API Title')
+       .setDescription('Your API Description')
+       .setVersion('1.0')
+       .build();
+
+     const document = SwaggerModule.createDocument(app, config);
+     SwaggerModule.setup('api', app, document);
+   };
+   ```
+
+3. **Apply Swagger Configuration in AppModule:**
+   In your `AppModule` or a dedicated module, import the `setupSwagger` function and call it to set up Swagger:
+
+   ```typescript
+   import { Module } from '@nestjs/common';
+   import { MongooseModule } from '@nestjs/mongoose';
+   import { setupSwagger } from './swagger.config'; // Import the setupSwagger function
+   import { UserModule } from './user/user.module';
+
+   @Module({
+     imports: [
+       MongooseModule.forRoot('mongodb://localhost/user-crud-app', { autoCreate: true }),
+       UserModule,
+     ],
+     controllers: [],
+     providers: [],
+   })
+   export class AppModule {
+     // Call setupSwagger in the constructor
+     constructor() {
+       setupSwagger(this);
+     }
+   }
+   ```
+
+4. **Decorate Your Controllers with Swagger Decorators:**
+   In your controllers (e.g., `user.controller.ts`), use Swagger decorators to provide additional information about your API:
+
+   ```typescript
+   import { Controller, Get, Post, Body } from '@nestjs/common';
+   import { ApiResponse, ApiTags } from '@nestjs/swagger';
+   import { CreateUserDto } from './dto/create-user.dto';
+   import { UserService } from './user.service';
+
+   @Controller('users')
+   @ApiTags('users') // Optional: Add tags for Swagger documentation
+   export class UserController {
+     constructor(private readonly userService: UserService) {}
+
+     @Get()
+     @ApiResponse({ status: 200, description: 'List of users' })
+     findAll() {
+       return this.userService.findAll();
+     }
+
+     @Post()
+     @ApiResponse({ status: 201, description: 'User has been successfully created.' })
+     create(@Body() createUserDto: CreateUserDto) {
+       return this.userService.create(createUserDto);
+     }
+   }
+   ```
+
+5. **Run Your Application:**
+   Start your Nest.js application. If you've set up everything correctly, you should be able to access Swagger UI at `http://localhost:3000/api`. Adjust the URL based on your application's configuration.
+
+
+
+
+
+
