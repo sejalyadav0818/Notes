@@ -270,6 +270,71 @@ export class AppModule {}
 
 
 
+# Errors 
 
+[Nest] 59240  - 12/01/2023, 3:20:53 PM   ERROR [ExceptionHandler] Nest can't resolve dependencies of the ProductController (ProductService, ?). Please make sure that the argument CategoryService at index [1] is available in the ProductModule context.
+
+Potential solutions:
+- Is ProductModule a valid NestJS module?
+- If CategoryService is a provider, is it part of the current ProductModule?
+- If CategoryService is exported from a separate @Module, is that module imported within ProductModule?
+  @Module({
+    imports: [ /* the Module containing CategoryService */ ]
+  })
+
+Error: Nest can't resolve dependencies of the ProductController (ProductService, ?). Please make sure that the argument CategoryService at index [1] is available in the ProductModule context.
+
+Potential solutions:
+- Is ProductModule a valid NestJS module?
+- If CategoryService is a provider, is it part of the current ProductModule?
+- If CategoryService is exported from a separate @Module, is that module imported within ProductModule?
+  @Module({
+    imports: [ /* the Module containing CategoryService */ ]
+  })
+
+  Soluation :
+  The error you're encountering indicates that there is a dependency resolution issue in your `ProductModule`. The `ProductController` is expecting `ProductService` and another dependency (likely `CategoryService` based on the error message) to be available in the `ProductModule` context.
+
+Here are some steps to troubleshoot and resolve this issue:
+
+1. **Check ProductService and CategoryService imports:**
+   Ensure that you have the correct imports for both `ProductService` and `CategoryService` in your `ProductModule`.
+
+   ```typescript
+   import { ProductService } from './product.service';
+   import { CategoryService } from '../category/category.service'; // Update the path based on your project structure
+   ```
+
+2. **Check ProductModule imports:**
+   Make sure that you have imported `CategoryModule` in your `ProductModule`. This is important because `CategoryService` might be provided by `CategoryModule`.
+
+   ```typescript
+   import { CategoryModule } from '../category/category.module'; // Update the path based on your project structure
+
+   @Module({
+     imports: [CategoryModule],
+     controllers: [ProductController],
+     providers: [ProductService],
+   })
+   export class ProductModule {}
+   ```
+
+3. **Check CategoryService export in CategoryModule:**
+   If `CategoryService` is provided by `CategoryModule`, ensure that you have exported it in `CategoryModule`.
+
+   ```typescript
+   @Module({
+     controllers: [CategoryController],
+     providers: [CategoryService],
+     exports: [CategoryService], // Add this line to export CategoryService
+   })
+   export class CategoryModule {}
+   ```
+
+4. **Circular Dependencies:**
+   Be cautious about circular dependencies. Ensure that there are no circular dependencies between your modules, as this can lead to dependency resolution issues.
+
+
+  
 
 
