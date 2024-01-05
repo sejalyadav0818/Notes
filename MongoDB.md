@@ -178,3 +178,111 @@
     // Example
     db.users.find({ age: { $gte: 18 } }, { name: 1, _id: 0 }).explain("executionStats");
     ```
+31. **How does MongoDB handle transactions?**
+   - **Answer:** MongoDB supports multi-document transactions starting from version 4.0. Transactions allow you to perform multiple operations on one or more documents atomically.
+
+   ```javascript
+   const session = db.getMongo().startSession();
+   session.startTransaction();
+
+   try {
+     db.users.updateOne({ name: "Alice" }, { $inc: { balance: -50 } }, { session });
+     db.transactions.insertOne({ user: "Alice", amount: 50 }, { session });
+
+     session.commitTransaction();
+   } catch (error) {
+     print(`Transaction aborted: ${error}`);
+     session.abortTransaction();
+   }
+   ```
+
+32. **Explain the concept of the `aggregate` method in MongoDB.**
+   - **Answer:** The `aggregate` method is used to perform aggregation operations on a collection. It allows you to transform and process data using a pipeline of stages.
+
+   ```javascript
+   // Example: Calculate the average age of users in each city
+   db.users.aggregate([
+     { $group: { _id: "$city", averageAge: { $avg: "$age" } } }
+   ]);
+   ```
+
+33. **What is the purpose of the `count` method in MongoDB?**
+   - **Answer:** The `count` method is used to count the number of documents in a collection that match a specified query.
+
+   ```javascript
+   // Example: Count the number of users with age greater than 25
+   db.users.count({ age: { $gt: 25 } });
+   ```
+
+34. **Explain the concept of Geospatial Indexing in MongoDB.**
+   - **Answer:** Geospatial indexing in MongoDB allows for the efficient querying of spatial data. It supports 2D and 3D indexes for points, lines, and polygons.
+
+   ```javascript
+   // Example: Find locations near a specific point
+   db.places.createIndex({ location: "2dsphere" });
+   db.places.find({
+     location: {
+       $near: {
+         $geometry: { type: "Point", coordinates: [-73.9667, 40.78] },
+         $maxDistance: 2000
+       }
+     }
+   });
+   ```
+
+35. **What is the purpose of the `explain` method in MongoDB?**
+   - **Answer:** The `explain` method provides information about the query execution plan, helping optimize queries and indexes.
+
+   ```javascript
+   // Example: Explain the query execution plan
+   db.users.find({ age: { $gte: 18 } }).explain("executionStats");
+   ```
+
+36. **How can you perform a case-insensitive search in MongoDB?**
+   - **Answer:** Use the `$regex` operator with the case-insensitive option.
+
+   ```javascript
+   // Example: Case-insensitive search for user names starting with "j"
+   db.users.find({ name: { $regex: /^j/i } });
+   ```
+
+37. **Explain the concept of a covered query in MongoDB.**
+   - **Answer:** A covered query is one where all the fields returned in the result are covered by an index, reducing the amount of data that needs to be scanned.
+
+   ```javascript
+   // Example: Covered query using an index on the "age" field
+   db.users.find({ age: { $gte: 25 } }, { name: 1, age: 1, _id: 0 }).explain("executionStats");
+   ```
+
+38. **What is the purpose of the `findOneAndUpdate` method in MongoDB?**
+   - **Answer:** The `findOneAndUpdate` method atomically updates and returns a single document based on a query.
+
+   ```javascript
+   // Example: Update the age of a user and return the original document
+   db.users.findOneAndUpdate({ name: "Bob" }, { $set: { age: 30 } }, { returnDocument: "before" });
+   ```
+
+39. **Explain the concept of a capped collection in MongoDB.**
+   - **Answer:** A capped collection is a fixed-size collection with a maximum number of documents. Once the limit is reached, older documents are replaced with new ones.
+
+   ```javascript
+   // Example: Create a capped collection with a size limit of 100KB
+   db.createCollection("logs", { capped: true, size: 100000 });
+   ```
+
+40. **How can you handle relationships between documents in MongoDB?**
+    - **Answer:** MongoDB supports embedding documents, referencing documents, and using a hybrid approach. The choice depends on factors like data size, access patterns, and consistency requirements.
+
+    ```javascript
+    // Example: Referencing documents (normalized model)
+    const user = {
+      _id: ObjectId(),
+      name: "Alice",
+      address_id: ObjectId("address_id")
+    };
+
+    const address = {
+      _id: ObjectId("address_id"),
+      city: "New York"
+    };
+    ```
