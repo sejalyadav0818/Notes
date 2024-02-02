@@ -51,6 +51,12 @@
   "git.enableSmartCommit": true, // Enable Git smart commit
   "git.confirmSync": false, // Disable sync confirmation in Git
   "editor.cursorStyle": "line", // Set cursor style to a line
-  "editor.cursorBlinking": "solid", // Set cursor blinking style to solid
-  "editor.cursorWidth": 2 // Set cursor width
+  "editor.cursorBlinking": "expand", // Set cursor blinking style to solid
+  "editor.cursorWidth": 3, // Set cursor width
+  "editor.insertSpaces": true, // Insert spaces instead of tabs
+  "explorer.autoReveal": true, // Auto reveal files in the Explorer
+  "workbench.editor.decorations.colors": false, // Disable file icon colors in the editor
+  "editor.folding": true, // Enable code folding
+
 }
+for more   https://code.visualstudio.com/docs/languages/json
