@@ -1,5 +1,6 @@
 {
   "files.autoSave": "onFocusChange", // Save files on focus change
+  "files.autoSaveDelay": 1000, // Set auto-save delay in milliseconds
   "workbench.iconTheme": "eq-material-theme-icons",
   "workbench.colorTheme": "Tomorrow Night Blue",
   "terminal.integrated.env.windows": {},
@@ -50,6 +51,7 @@
   "git.autofetch": true, // Automatically fetch changes from remote repositories
   "git.enableSmartCommit": true, // Enable Git smart commit
   "git.confirmSync": false, // Disable sync confirmation in Git
+  "git.blame.lineWhitespace": "all", // Show Git Blame information for all lines
   "editor.cursorStyle": "line", // Set cursor style to a line
   "editor.cursorBlinking": "expand", // Set cursor blinking style to solid
   "editor.cursorWidth": 3, // Set cursor width
@@ -57,6 +59,7 @@
   "explorer.autoReveal": true, // Auto reveal files in the Explorer
   "workbench.editor.decorations.colors": false, // Disable file icon colors in the editor
   "editor.folding": true, // Enable code folding
-
+  "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}", // Customize window title
 }
+
 for more   https://code.visualstudio.com/docs/languages/json
