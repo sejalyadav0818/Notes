@@ -1,0 +1,56 @@
+{
+  "files.autoSave": "onFocusChange", // Save files on focus change
+  "workbench.iconTheme": "eq-material-theme-icons",
+  "workbench.colorTheme": "Tomorrow Night Blue",
+  "terminal.integrated.env.windows": {},
+  "workbench.settings.applyToAllProfiles": [],
+  "editor.fontFamily": "'Source Code Pro', 'Consolas', 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "editor.fontLigatures": true,
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "variable.other.comment",
+          "variable.language.comment"
+        ],
+        "settings": {
+          "foreground": "#82a5e7"
+        }
+      }
+    ]
+  },
+  "editor.tabSize": 2, // Set tab size to 2 spaces
+  "editor.detectIndentation": false, // Disable automatic indentation detection
+  "editor.wordWrap": "on", // Enable word wrap
+  "editor.renderWhitespace": "boundary", // Show whitespace characters at the end of lines
+  "editor.renderControlCharacters": true, // Show control characters
+  "editor.minimap.enabled": false, // Disable minimap
+  "editor.rulers": [
+    80,
+    120
+  ], // Show vertical rulers at 80 and 120 characters
+  "editor.formatOnSave": true, // Format code on save
+  "editor.formatOnPaste": true, // Format code on paste
+  "editor.snippetSuggestions": "top", // Show snippet suggestions on top
+  "editor.suggest.showKeywords": false, // Hide keywords in suggestions
+  "editor.acceptSuggestionOnEnter": "on", // Accept suggestions on Enter
+  "files.trimTrailingWhitespace": true, // Trim trailing whitespace on save
+  "files.insertFinalNewline": true, // Insert a new line at the end of the file on save
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  },
+  "explorer.confirmDelete": false, // Disable delete confirmation in the explorer
+  "window.zoomLevel": 0, // Set the default zoom level
+  "git.autofetch": true, // Automatically fetch changes from remote repositories
+  "git.enableSmartCommit": true, // Enable Git smart commit
+  "git.confirmSync": false, // Disable sync confirmation in Git
+  "editor.cursorStyle": "line", // Set cursor style to a line
+  "editor.cursorBlinking": "solid", // Set cursor blinking style to solid
+  "editor.cursorWidth": 2 // Set cursor width
+}
